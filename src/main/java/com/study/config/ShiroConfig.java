@@ -92,14 +92,12 @@ public class ShiroConfig {
 		// 自定义加载权限资源关系
 		List<Resources> resourcesList = resourcesService.queryAll();
 		for (Resources resources : resourcesList) {
-
 			if (StringUtil.isNotEmpty(resources.getResurl())) {
 				String permission = "perms[" + resources.getResurl() + "]";
 				filterChainDefinitionMap.put(resources.getResurl(), permission);
 			}
 		}
 		filterChainDefinitionMap.put("/**", "authc");
-
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
@@ -132,11 +130,9 @@ public class ShiroConfig {
 	@Bean
 	public HashedCredentialsMatcher hashedCredentialsMatcher() {
 		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-
 		hashedCredentialsMatcher.setHashAlgorithmName("md5");// 散列算法:这里使用MD5算法;
 		hashedCredentialsMatcher.setHashIterations(2);// 散列的次数，比如散列两次，相当于
 														// md5(md5(""));
-
 		return hashedCredentialsMatcher;
 	}
 
